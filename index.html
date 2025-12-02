@@ -294,8 +294,6 @@
         // ===== CONFIGURATION =====
         // UPDATE THIS WITH YOUR FIREBASE PROJECT URL
         const FIREBASE_URL = 'https://music-game-fbbf3-default-rtdb.firebaseio.com';
-        // CORS proxy for Neocities compatibility
-        const CORS_PROXY = 'https://corsproxy.io/?';
         // =========================
 
         const songSelect = document.getElementById('song-select');
@@ -319,9 +317,8 @@
             leaderboardContent.innerHTML = '<div class="loading">Loading leaderboard...</div>';
 
             try {
-                // Fetch data from Firebase (with CORS proxy for Neocities)
-                const url = `${FIREBASE_URL}/leaderboards/${songId}.json`;
-                const response = await fetch(`${CORS_PROXY}${encodeURIComponent(url)}`);
+                // Fetch data from Firebase
+                const response = await fetch(`${FIREBASE_URL}/leaderboards/${songId}.json`);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
